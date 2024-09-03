@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-
+from flask_sqlalchemy import SQLAlchemy
 
 class Jogo:
     def __init__(self,nome, categoria, console):
@@ -28,6 +28,17 @@ usuarios = { usuario1.nickname:usuario1,
 
 app = Flask(__name__)
 app.secret_key='jogoteca'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+    '{SGBD}://{usuario}:{senha}@{servidor}/{database}'.format(
+        SGBD = 'mysql+mysqlconnector',
+        usuario = 'root',
+        senha = 'password',
+        servidor = 'localhost',
+        database = 'jogoteca'
+    )
+
+db = SQLAlchemy(app)
 
 
 @app.route('/')
