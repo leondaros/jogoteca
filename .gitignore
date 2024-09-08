@@ -2,3 +2,5 @@
 .venv
 .idea
 prepara_banco.py
+__pycache__/
+*.py[cod]
