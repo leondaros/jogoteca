@@ -26,6 +26,10 @@ def criar():
     db.session.add(novo_jogo)
     db.session.commit()
 
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa{novo_jogo.id}.jpeg')
+
     return redirect(url_for('index'))
 
 @app.route('/editar/<int:id>')
